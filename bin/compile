@@ -1,17 +1,41 @@
 #!/usr/bin/env bash
 
-export GOHOME=$HOME/.gohome
+set -e 
+
+BP_DIR="$(cd "$(dirname "$0")" && pwd)"
+BUILD_DIR=$1
+CACHE_DIR=$2
+OPT_DIR=$BP_DIR/../opt/
+PROFILED_DIR=$BUILD_DIR/.profile.d
+
+
+
+export GOHOME=$BUILD_DIR/.gohome
 export GOROOT=$GOHOME/go
 export PATH=$PATH:$GOROOT/bin
 
-mkdir -p $GOROOT
+mkdir -p $GOROOT/bin
 cd $GOHOME
 
 curl -O  https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
 tar -xvf go1.8.3.linux-amd64.tar.gz
 
-cd $HOME
+mkdir -p $PROFILED_DIR
 
-export GOPATH=$HOME/go
+cat <<EOF > ${PROFILED_DIR}/golang.sh
+#!/bin/bash
+set -eu
+export GOHOME=$BUILD_DIR/.gohome
+export GOROOT=$GOHOME/go
+export PATH=$PATH:$GOROOT/bin
+export GOPATH=$BUILD_DIR/go
 export PATH=$PATH:$GOPATH/bin
+EOF
+
+chmod +x ${BUILD_DIR}/golang.sh
+
+echo "-----> Installed GoLang1.8.3"
+
+
+
 
