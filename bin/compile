@@ -22,17 +22,20 @@ tar -xvf go1.8.3.linux-amd64.tar.gz
 
 mkdir -p $PROFILED_DIR
 
-#cat <<EOF > ${PROFILED_DIR}/golang.sh
-##!/bin/bash
-#set -eu
-#export GOHOME=$HOME/.gohome
-#export GOROOT=$GOHOME/go
-#export PATH=$PATH:$GOROOT/bin
-#export GOPATH=$HOME/go
-#export PATH=$PATH:$GOPATH/bin
-#EOF#
+cat <<EOF > ${PROFILED_DIR}/golang.sh
+#!/bin/bash
+set -e
+export GOHOME=$HOME/.gohome
+export GOROOT=$GOHOME/go
+export PATH=$PATH:$GOROOT/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+echo $GOROOT
+echo $GOPATH
+echo $PATH
+EOF
 
-#chmod +x ${PROFILED_DIR}/golang.sh
+chmod +x ${PROFILED_DIR}/golang.sh
 
 echo "-----> Installed GoLang1.8.3"
 
