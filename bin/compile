@@ -27,7 +27,7 @@ export GOHOME=/app/.gohome
 export GOROOT=/app/.gohome/go
 export PATH=/app/.gohome/go/bin:$PATH
 export GOPATH=/app/go
-export PATH=/app/go/bin:$PATH
+export PATH=/app/go/bin:/app/.gohome/go/bin:$PATH
 EOF
 
 chmod +x ${PROFILED_DIR}/golang.sh
