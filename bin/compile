@@ -20,17 +20,28 @@ tar -xvf go1.8.3.linux-amd64.tar.gz
 
 mkdir -p $PROFILED_DIR
 
+# put this under .profile.d so that the dyno gets it at runtime
 cat <<EOF > ${PROFILED_DIR}/golang.sh
 #!/bin/bash
 set -e
 export GOHOME=/app/.gohome
 export GOROOT=/app/.gohome/go
-export PATH=/app/.gohome/go/bin:$PATH
 export GOPATH=/app/go
 export PATH=/app/go/bin:/app/.gohome/go/bin:$PATH
 EOF
 
+# for future buildpacks during slug compilation 
+cat <<EOF > ${BP_DIR}/export
+#!/bin/bash
+set -e
+export GOHOME=$GOHOME
+export GOROOT=$GOROOT
+export GOPATH=$BUILD_DIR/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+EOF
+
 chmod +x ${PROFILED_DIR}/golang.sh
+chmod +x ${BP_DIR}/export
 
 echo "-----> Installed GoLang1.8.3"
 
