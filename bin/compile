@@ -8,11 +8,9 @@ CACHE_DIR=$2
 OPT_DIR=$BP_DIR/../opt/
 PROFILED_DIR=$BUILD_DIR/.profile.d
 
-
-
-export GOHOME=$BUILD_DIR/.gohome
-export GOROOT=$GOHOME/go
-export PATH=$PATH:$GOROOT/bin
+GOHOME=$BUILD_DIR/.gohome
+GOROOT=$GOHOME/go
+PATH=$PATH:$GOROOT/bin
 
 mkdir -p $GOROOT/bin
 cd $GOHOME
@@ -27,12 +25,9 @@ cat <<EOF > ${PROFILED_DIR}/golang.sh
 set -e
 export GOHOME=/app/.gohome
 export GOROOT=/app/.gohome/go
-export PATH=$PATH:/app/.gohome/go/bin
+export PATH=/app/.gohome/go/bin:$PATH
 export GOPATH=/app/go
-export PATH=$PATH:/app/go/bin
-echo $GOROOT
-echo $GOPATH
-echo $PATH
+export PATH=/app/go/bin:$PATH
 EOF
 
 chmod +x ${PROFILED_DIR}/golang.sh
