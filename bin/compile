@@ -32,7 +32,7 @@ export GOPATH=$BUILD_DIR/go
 export PATH=$PATH:$GOPATH/bin
 EOF
 
-chmod +x ${BUILD_DIR}/golang.sh
+chmod +x ${PROFILED_DIR}/golang.sh
 
 echo "-----> Installed GoLang1.8.3"
 
