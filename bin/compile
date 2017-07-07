@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+export GOHOME=$HOME/.gohome
+export GOROOT=$GOHOME/go
+export PATH=$PATH:$GOROOT/bin
+
+mkdir -p $GOROOT
+cd $GOHOME
+
+curl -O  https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
+tar -xvf go1.8.3.linux-amd64.tar.gz
+
+cd $HOME
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
