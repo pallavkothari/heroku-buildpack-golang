@@ -25,10 +25,10 @@ mkdir -p $PROFILED_DIR
 cat <<EOF > ${PROFILED_DIR}/golang.sh
 #!/bin/bash
 set -eu
-export GOHOME=$BUILD_DIR/.gohome
+export GOHOME=/$HOME/.gohome
 export GOROOT=$GOHOME/go
 export PATH=$PATH:$GOROOT/bin
-export GOPATH=$BUILD_DIR/go
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 EOF
 
